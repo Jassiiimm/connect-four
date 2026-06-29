@@ -1,0 +1,37 @@
+body {
+   background-color: gainsboro;
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  text-align: center;
+   min-height: 100dvh;
+}
+
+#board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 520px;
+  margin: 0 px;
+  justify-self: center;
+  gap: 5px;
+  background-color: rgb(55, 69, 172);
+}
+
+.box {
+  box-sizing: border-box;
+  width: 70px;
+  height: 70px;
+  border: 2px solid black;
+  border-radius: 50px;
+  background-color: rgb(254, 254, 254);
+}
+
+#gameArea {
+  display: flex;
+  justify-content: center;
+    align-items: center;
+}
+
+#playerOneSide, #playerTwoSide {
+  padding: 15px;
+  
+}
