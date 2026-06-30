@@ -55,20 +55,30 @@ if (clickedBox.classList.contains("box")) {
           return
         }
 
-        const row = Math.floor(boxId / 7)
+     const row = Math.floor(boxId / 7)
 const columnNumber = boxId % 7
 
 if (row - 3 >= 0 && columnNumber - 3 >= 0) {
-  if (
-    boxes[boxId - 8].classList.contains(currentPlayer) &&
-    boxes[boxId - 16].classList.contains(currentPlayer) &&
-    boxes[boxId - 24].classList.contains(currentPlayer)
-  ) {
+  if ( boxes[boxId - 8].classList.contains(currentPlayer) 
+    && boxes[boxId - 16].classList.contains(currentPlayer) 
+  && boxes[boxId - 24].classList.contains(currentPlayer)) {
     message.textContent = currentPlayer + " wins"
     gameOver = true
     return
   }
-} if (currentPlayer === "red") {
+}
+
+if (row + 3 <= 5 && columnNumber + 3 <= 6) {
+  if (boxes[boxId + 8].classList.contains(currentPlayer) 
+    && boxes[boxId + 16].classList.contains(currentPlayer) 
+  && boxes[boxId + 24].classList.contains(currentPlayer)) {
+    message.textContent = currentPlayer + " wins"
+    gameOver = true
+    return
+  }
+}
+
+if (currentPlayer === "red") {
           currentPlayer = "yellow"
         } 
         else {
