@@ -78,6 +78,16 @@ if (row + 3 <= 5 && columnNumber + 3 <= 6) {
   }
 }
 
+if (row - 2 >= 0 && columnNumber - 2 >= 0 && row + 1 <= 5 && columnNumber + 1 <= 6) {
+  if (boxes[boxId - 8].classList.contains(currentPlayer)
+    && boxes[boxId - 16].classList.contains(currentPlayer)
+    && boxes[boxId + 8].classList.contains(currentPlayer)) {
+    message.textContent = currentPlayer + " wins"
+    gameOver = true
+    return
+  }
+}
+
 if (currentPlayer === "red") {
           currentPlayer = "yellow"
         } 
