@@ -9,6 +9,10 @@ let gameOver = false
   const clickedBox = event.target
 
 if (clickedBox.classList.contains("box")) {
+  if (gameOver === true) {
+    return
+  }
+
     const clickedId = Number(clickedBox.id)
     const column = clickedId % 7
     console.log(column)
@@ -17,7 +21,10 @@ if (clickedBox.classList.contains("box")) {
       const box = boxes[boxId]
       if (!box.classList.contains("red") && !box.classList.contains("yellow")) {
         box.classList.add(currentPlayer)
-        if (boxId <=20 && boxes[boxId +7].classList.contains(currentPlayer) && boxes[boxId+14].classList.contains(currentPlayer) && boxes[boxId+21].classList.contains(currentPlayer)) {
+
+        if (boxId <=20 && boxes[boxId +7].classList.contains(currentPlayer) 
+          && boxes[boxId+14].classList.contains(currentPlayer) 
+        && boxes[boxId+21].classList.contains(currentPlayer)) {
          message.textContent = currentPlayer + " wins" 
          gameOver = true 
          return
@@ -25,15 +32,43 @@ if (clickedBox.classList.contains("box")) {
         const rowStart = boxId - (boxId % 7)
         const rowEnd = rowStart+6
         
-        if ((boxId - 3 >= rowStart && boxes[boxId - 1].classList.contains(currentPlayer) && boxes[boxId - 2].classList.contains(currentPlayer) && boxes[boxId - 3].classList.contains(currentPlayer))
-         || (boxId - 2 >= rowStart && boxId + 1 <= rowEnd && boxes[boxId - 1].classList.contains(currentPlayer) && boxes[boxId - 2].classList.contains(currentPlayer) && boxes[boxId + 1].classList.contains(currentPlayer)) 
-         || (boxId - 1 >= rowStart && boxId + 2 <= rowEnd && boxes[boxId - 1].classList.contains(currentPlayer) && boxes[boxId + 1].classList.contains(currentPlayer) && boxes[boxId + 2].classList.contains(currentPlayer)) 
-         || (boxId + 3 <= rowEnd && boxes[boxId + 1].classList.contains(currentPlayer) && boxes[boxId + 2].classList.contains(currentPlayer) && boxes[boxId + 3].classList.contains(currentPlayer))) {
+        if ((boxId - 3 >= rowStart 
+          && boxes[boxId - 1].classList.contains(currentPlayer) 
+          && boxes[boxId - 2].classList.contains(currentPlayer) 
+          && boxes[boxId - 3].classList.contains(currentPlayer))
+         || (boxId - 2 >= rowStart 
+          && boxId + 1 <= rowEnd 
+          && boxes[boxId - 1].classList.contains(currentPlayer) 
+           && boxes[boxId - 2].classList.contains(currentPlayer)
+            && boxes[boxId + 1].classList.contains(currentPlayer)) 
+         || (boxId - 1 >= rowStart 
+          && boxId + 2 <= rowEnd 
+          && boxes[boxId - 1].classList.contains(currentPlayer)
+            && boxes[boxId + 1].classList.contains(currentPlayer)
+             && boxes[boxId + 2].classList.contains(currentPlayer)) 
+         || (boxId + 3 <= rowEnd 
+          && boxes[boxId + 1].classList.contains(currentPlayer) 
+          && boxes[boxId + 2].classList.contains(currentPlayer) 
+          && boxes[boxId + 3].classList.contains(currentPlayer))) {
           message.textContent = currentPlayer + " wins"
           gameOver = true
           return
         }
-        if (currentPlayer === "red") {
+
+        const row = Math.floor(boxId / 7)
+const columnNumber = boxId % 7
+
+if (row - 3 >= 0 && columnNumber - 3 >= 0) {
+  if (
+    boxes[boxId - 8].classList.contains(currentPlayer) &&
+    boxes[boxId - 16].classList.contains(currentPlayer) &&
+    boxes[boxId - 24].classList.contains(currentPlayer)
+  ) {
+    message.textContent = currentPlayer + " wins"
+    gameOver = true
+    return
+  }
+} if (currentPlayer === "red") {
           currentPlayer = "yellow"
         } 
         else {
