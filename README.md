@@ -37,14 +37,14 @@ open index.html
 
 ## Technologies Used
 
-HTML
-CSS
-JavaScript
+- HTML
+- CSS
+- JavaScript
 
 ## Future Enhancements
 
-Add animation when the pieces drop.
-Make the design better for smaller screens.
+- Add animation when the pieces drop.
+- Make the design better for smaller screens.
 
 ## Credits
 
