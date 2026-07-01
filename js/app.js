@@ -3,6 +3,7 @@ const boxes = document.querySelectorAll(".box")
 let currentPlayer = "red"
 const message = document.querySelector("#message")
 let gameOver = false
+const resetBtn = document.querySelector("#reset-btn")
 
 
   board.addEventListener("click", function(event) {
@@ -15,7 +16,7 @@ if (clickedBox.classList.contains("box")) {
 
     const clickedId = Number(clickedBox.id)
     const column = clickedId % 7
-    console.log(column)
+
     
     for (let boxId = column + 35; boxId >= 0; boxId -= 7) {
       const box = boxes[boxId]
@@ -34,21 +35,21 @@ if (clickedBox.classList.contains("box")) {
         
         if ((boxId - 3 >= rowStart 
           && boxes[boxId - 1].classList.contains(currentPlayer) 
-          && boxes[boxId - 2].classList.contains(currentPlayer) 
-          && boxes[boxId - 3].classList.contains(currentPlayer))
+            && boxes[boxId - 2].classList.contains(currentPlayer) 
+           && boxes[boxId - 3].classList.contains(currentPlayer))
          || (boxId - 2 >= rowStart 
           && boxId + 1 <= rowEnd 
-          && boxes[boxId - 1].classList.contains(currentPlayer) 
-           && boxes[boxId - 2].classList.contains(currentPlayer)
-            && boxes[boxId + 1].classList.contains(currentPlayer)) 
+            && boxes[boxId - 1].classList.contains(currentPlayer)
+          && boxes[boxId - 2].classList.contains(currentPlayer)
+           && boxes[boxId + 1].classList.contains(currentPlayer)) 
          || (boxId - 1 >= rowStart 
-          && boxId + 2 <= rowEnd 
-          && boxes[boxId - 1].classList.contains(currentPlayer)
-            && boxes[boxId + 1].classList.contains(currentPlayer)
-             && boxes[boxId + 2].classList.contains(currentPlayer)) 
-         || (boxId + 3 <= rowEnd 
+           && boxId + 2 <= rowEnd 
+             && boxes[boxId - 1].classList.contains(currentPlayer)
+           && boxes[boxId + 1].classList.contains(currentPlayer)
+            && boxes[boxId + 2].classList.contains(currentPlayer)) 
+         ||  (boxId + 3 <= rowEnd 
           && boxes[boxId + 1].classList.contains(currentPlayer) 
-          && boxes[boxId + 2].classList.contains(currentPlayer) 
+          && boxes[boxId + 2].classList.contains(currentPlayer)
           && boxes[boxId + 3].classList.contains(currentPlayer))) {
           message.textContent = currentPlayer + " wins"
           gameOver = true
@@ -58,6 +59,7 @@ if (clickedBox.classList.contains("box")) {
      const row = Math.floor(boxId / 7)
 const columnNumber = boxId % 7
 
+// \ diagonal
 if (row - 3 >= 0 && columnNumber - 3 >= 0) {
   if ( boxes[boxId - 8].classList.contains(currentPlayer) 
     && boxes[boxId - 16].classList.contains(currentPlayer) 
@@ -81,7 +83,7 @@ if (row + 3 <= 5 && columnNumber + 3 <= 6) {
 if (row - 2 >= 0 && columnNumber - 2 >= 0 && row + 1 <= 5 && columnNumber + 1 <= 6) {
   if (boxes[boxId - 8].classList.contains(currentPlayer)
     && boxes[boxId - 16].classList.contains(currentPlayer)
-    && boxes[boxId + 8].classList.contains(currentPlayer)) {
+  && boxes[boxId + 8].classList.contains(currentPlayer)) {
     message.textContent = currentPlayer + " wins"
     gameOver = true
     return
@@ -91,7 +93,19 @@ if (row - 2 >= 0 && columnNumber - 2 >= 0 && row + 1 <= 5 && columnNumber + 1 <=
 if (row - 1 >= 0 && columnNumber - 1 >= 0 && row + 2 <= 5 && columnNumber + 2 <= 6) {
   if (boxes[boxId - 8].classList.contains(currentPlayer)
     && boxes[boxId + 8].classList.contains(currentPlayer)
-    && boxes[boxId + 16].classList.contains(currentPlayer)) {
+  && boxes[boxId + 16].classList.contains(currentPlayer)) {
+    message.textContent = currentPlayer + " wins"
+    gameOver = true
+    return
+  }
+}
+
+// / diagonal (same idea just flip the signs and change 8 to 6)
+
+if (row - 3 >= 0 && columnNumber + 3 <= 6) {
+  if (boxes[boxId - 6].classList.contains(currentPlayer)
+    && boxes[boxId - 12].classList.contains(currentPlayer)
+  && boxes[boxId - 18].classList.contains(currentPlayer)) {
     message.textContent = currentPlayer + " wins"
     gameOver = true
     return
@@ -103,8 +117,10 @@ if (currentPlayer === "red") {
         } 
         else {
           currentPlayer = "red"
-        } return
+        } 
+        return 
   }
   }
   }
 })
+
