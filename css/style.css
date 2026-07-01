@@ -63,10 +63,6 @@ button:hover {
   cursor: pointer;
 }
 
-.box:hover {
-  background-color: rgb(230, 230, 230);
-}
-
 #playerOneSide,
 #playerTwoSide {
   padding: 15px;
