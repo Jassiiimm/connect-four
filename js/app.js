@@ -142,6 +142,20 @@ if (row - 1 >= 0 && columnNumber + 1 <= 6 && row + 2 <= 5 && columnNumber - 2 >=
   }
 }
 
+let tie = true
+
+for (let i = 0; i < boxes.length; i++) {
+  if (!boxes[i].classList.contains("red") && !boxes[i].classList.contains("yellow")) {
+    tie = false
+  }
+}
+
+if (tie === true) {
+  message.textContent = "It's a tie"
+  gameOver = true
+  return
+}
+
 if (currentPlayer === "red") {
           currentPlayer = "yellow"
         } 
@@ -154,6 +168,7 @@ if (currentPlayer === "red") {
   }
   }
 })
+
 
 resetBtn.addEventListener("click", function() {
   for (let i = 0; i < boxes.length; i++) {
