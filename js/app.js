@@ -4,12 +4,19 @@ let currentPlayer = "red"
 const message = document.querySelector("#message")
 let gameOver = false
 const resetBtn = document.querySelector("#reset-btn")
+const startBtn = document.querySelector("#start-btn")
+const instructions = document.querySelector("#instructions")
+let gameStarted = false
 
 
   board.addEventListener("click", function(event) {
   const clickedBox = event.target
 
 if (clickedBox.classList.contains("box")) {
+  if (gameStarted === false) {
+    message.textContent = "Click start game first"
+    return
+  }
   if (gameOver === true) {
     return
   }
@@ -151,7 +158,7 @@ for (let i = 0; i < boxes.length; i++) {
 }
 
 if (tie === true) {
-  message.textContent = "It's a tie"
+  message.textContent = "It's a tie!!!"
   gameOver = true
   return
 }
@@ -169,7 +176,6 @@ if (currentPlayer === "red") {
   }
 })
 
-
 resetBtn.addEventListener("click", function() {
   for (let i = 0; i < boxes.length; i++) {
     boxes[i].classList.remove("red")
@@ -178,6 +184,15 @@ resetBtn.addEventListener("click", function() {
 
   currentPlayer = "red"
   gameOver = false
+  gameStarted = true
   message.textContent = "red's turn"
+})
+
+startBtn.addEventListener("click", function() {
+  gameStarted = true
+  gameOver = false
+  currentPlayer = "red"
+  message.textContent = "red's turn"
+  instructions.classList.add("hide")
 })
 
