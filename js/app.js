@@ -155,3 +155,14 @@ if (currentPlayer === "red") {
   }
 })
 
+resetBtn.addEventListener("click", function() {
+  for (let i = 0; i < boxes.length; i++) {
+    boxes[i].classList.remove("red")
+    boxes[i].classList.remove("yellow")
+  }
+
+  currentPlayer = "red"
+  gameOver = false
+  message.textContent = "red's turn"
+})
+
