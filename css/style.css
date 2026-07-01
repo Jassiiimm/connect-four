@@ -1,19 +1,56 @@
 body {
-   background-color: gainsboro;
+  background-color: gainsboro;
   font-family: system-ui, sans-serif;
   margin: 0;
   text-align: center;
-   min-height: 100dvh;
+  min-height: 100dvh;
+}
+
+h1 {
+  margin-top: 25px;
+  font-size: 42px;
+}
+
+#message {
+  font-size: 24px;
+  margin: 15px 0;
+}
+
+#controls {
+  margin: 15px 0;
+}
+
+button {
+  padding: 10px 18px;
+  margin: 5px;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: lightgray;
+}
+
+#gameArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
 }
 
 #board {
   display: flex;
   flex-wrap: wrap;
   width: 520px;
-  margin: 0 px;
-  justify-self: center;
+  margin: 0 auto;
   gap: 5px;
-  background-color: rgb(55, 69, 172);
+  padding: 15px;
+  background-color: rgb(47, 19, 186);
+  border: 8px solid black;
+  border-radius: 15px;
 }
 
 .box {
@@ -21,19 +58,27 @@ body {
   width: 70px;
   height: 70px;
   border: 2px solid black;
-  border-radius: 50px;
-  background-color: rgb(254, 254, 254);
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
 }
 
-#gameArea {
-  display: flex;
-  justify-content: center;
-    align-items: center;
+.box:hover {
+  background-color: rgb(230, 230, 230);
 }
 
-#playerOneSide, #playerTwoSide {
+#playerOneSide,
+#playerTwoSide {
   padding: 15px;
-  
+}
+
+#leaderboard {
+  background-color: white;
+  width: 300px;
+  margin: 25px auto;
+  padding: 15px;
+  border: 2px solid black;
+  border-radius: 12px;
 }
 
 .red {
