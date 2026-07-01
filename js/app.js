@@ -7,6 +7,10 @@ const resetBtn = document.querySelector("#reset-btn")
 const startBtn = document.querySelector("#start-btn")
 const instructions = document.querySelector("#instructions")
 let gameStarted = false
+const playerOneScore = document.querySelector("#player-one-score")
+const playerTwoScore = document.querySelector("#player-two-score")
+let playerOneWins = 0
+let playerTwoWins = 0
 
 
   board.addEventListener("click", function(event) {
@@ -35,10 +39,20 @@ if (clickedBox.classList.contains("box")) {
         && boxes[boxId+21].classList.contains(currentPlayer)) {
          message.textContent = currentPlayer + " wins" 
          gameOver = true 
-         return
+        
+         if (currentPlayer === "red") {
+          playerOneWins++
+          playerOneScore.textContent = playerOneWins
+        } else {
+          playerTwoWins++
+          playerTwoScore.textContent = playerTwoWins
         }
-        const rowStart = boxId - (boxId % 7)
-        const rowEnd = rowStart+6
+
+        return
+      }
+
+      const rowStart = boxId - (boxId % 7)
+      const rowEnd = rowStart+6
         
         if ((boxId - 3 >= rowStart 
           && boxes[boxId - 1].classList.contains(currentPlayer) 
@@ -60,6 +74,13 @@ if (clickedBox.classList.contains("box")) {
           && boxes[boxId + 3].classList.contains(currentPlayer))) {
           message.textContent = currentPlayer + " wins"
           gameOver = true
+          if (currentPlayer === "red") {
+          playerOneWins++
+          playerOneScore.textContent = playerOneWins
+        } else {
+          playerTwoWins++
+          playerTwoScore.textContent = playerTwoWins
+        }
           return
         }
 
@@ -73,6 +94,13 @@ if (row - 3 >= 0 && columnNumber - 3 >= 0) {
   && boxes[boxId - 24].classList.contains(currentPlayer)) {
     message.textContent = currentPlayer + " wins"
     gameOver = true
+    if (currentPlayer === "red") {
+          playerOneWins++
+          playerOneScore.textContent = playerOneWins
+        } else {
+          playerTwoWins++
+          playerTwoScore.textContent = playerTwoWins
+        }
     return
   }
 }
@@ -83,6 +111,13 @@ if (row + 3 <= 5 && columnNumber + 3 <= 6) {
   && boxes[boxId + 24].classList.contains(currentPlayer)) {
     message.textContent = currentPlayer + " wins"
     gameOver = true
+    if (currentPlayer === "red") {
+          playerOneWins++
+          playerOneScore.textContent = playerOneWins
+        } else {
+          playerTwoWins++
+          playerTwoScore.textContent = playerTwoWins
+        }
     return
   }
 }
@@ -93,6 +128,13 @@ if (row - 2 >= 0 && columnNumber - 2 >= 0 && row + 1 <= 5 && columnNumber + 1 <=
   && boxes[boxId + 8].classList.contains(currentPlayer)) {
     message.textContent = currentPlayer + " wins"
     gameOver = true
+    if (currentPlayer === "red") {
+          playerOneWins++
+          playerOneScore.textContent = playerOneWins
+        } else {
+          playerTwoWins++
+          playerTwoScore.textContent = playerTwoWins
+        }
     return
   }
 }
@@ -103,6 +145,13 @@ if (row - 1 >= 0 && columnNumber - 1 >= 0 && row + 2 <= 5 && columnNumber + 2 <=
   && boxes[boxId + 16].classList.contains(currentPlayer)) {
     message.textContent = currentPlayer + " wins"
     gameOver = true
+    if (currentPlayer === "red") {
+          playerOneWins++
+          playerOneScore.textContent = playerOneWins
+        } else {
+          playerTwoWins++
+          playerTwoScore.textContent = playerTwoWins
+        }
     return
   }
 }
@@ -115,6 +164,13 @@ if (row - 3 >= 0 && columnNumber + 3 <= 6) {
   && boxes[boxId - 18].classList.contains(currentPlayer)) {
     message.textContent = currentPlayer + " wins"
     gameOver = true
+    if (currentPlayer === "red") {
+          playerOneWins++
+          playerOneScore.textContent = playerOneWins
+        } else {
+          playerTwoWins++
+          playerTwoScore.textContent = playerTwoWins
+        }
     return
   }
 }
@@ -125,6 +181,13 @@ if (row + 3 <= 5 && columnNumber - 3 >= 0) {
   && boxes[boxId + 18].classList.contains(currentPlayer)) {
     message.textContent = currentPlayer + " wins"
     gameOver = true
+    if (currentPlayer === "red") {
+          playerOneWins++
+          playerOneScore.textContent = playerOneWins
+        } else {
+          playerTwoWins++
+          playerTwoScore.textContent = playerTwoWins
+        }
     return
   } 
 }
@@ -135,6 +198,13 @@ if (row - 2 >= 0 && columnNumber + 2 <= 6 && row + 1 <= 5 && columnNumber - 1 >=
   && boxes[boxId + 6].classList.contains(currentPlayer)) {
     message.textContent = currentPlayer + " wins"
     gameOver = true
+    if (currentPlayer === "red") {
+          playerOneWins++
+          playerOneScore.textContent = playerOneWins
+        } else {
+          playerTwoWins++
+          playerTwoScore.textContent = playerTwoWins
+        }
     return
   }
 }
@@ -145,6 +215,13 @@ if (row - 1 >= 0 && columnNumber + 1 <= 6 && row + 2 <= 5 && columnNumber - 2 >=
     && boxes[boxId + 12].classList.contains(currentPlayer)) {
     message.textContent = currentPlayer + " wins"
     gameOver = true
+    if (currentPlayer === "red") {
+          playerOneWins++
+          playerOneScore.textContent = playerOneWins
+        } else {
+          playerTwoWins++
+          playerTwoScore.textContent = playerTwoWins
+        }
     return
   }
 }
@@ -160,6 +237,13 @@ for (let i = 0; i < boxes.length; i++) {
 if (tie === true) {
   message.textContent = "It's a tie!!!"
   gameOver = true
+  if (currentPlayer === "red") {
+          playerOneWins++
+          playerOneScore.textContent = playerOneWins
+        } else {
+          playerTwoWins++
+          playerTwoScore.textContent = playerTwoWins
+        }
   return
 }
 
@@ -194,5 +278,6 @@ startBtn.addEventListener("click", function() {
   currentPlayer = "red"
   message.textContent = "red's turn"
   instructions.classList.add("hide")
+  startBtn.classList.add("hide")
 })
 
