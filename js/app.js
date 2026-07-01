@@ -148,6 +148,7 @@ if (currentPlayer === "red") {
         else {
           currentPlayer = "red"
         } 
+      message.textContent = currentPlayer + "'s turn"
         return 
   }
   }
